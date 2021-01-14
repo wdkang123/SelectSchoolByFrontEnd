@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangkang.mapper.SchoolMapper">
+	<select id="selectAllSchool" resultType="School"> 
+		SELECT
+			*
+		FROM
+			school_info
+	</select>
+	
+	<select id="selectSchoolById" parameterType="Integer" resultType="School">
+		SELECT 
+			*
+		FROM
+			school_info
+		WHERE
+			id = #{value}
+	</select>
+	
+	<insert id="insertSchool" parameterType="School">
+		INSERT INTO
+			school_info(
+				name, name_CN, rank, tofel, ssat, type, site, local, grade_lower,
+				grade_upper, religion, establish_time, is_boarding, created_time,
+				updated_time
+			)
+		VALUES(
+			#{name}, #{name_CN}, #{rank}, #{tofel}, #{ssat}, #{type}, #{site}, 
+			#{local}, #{grade_lower}, #{grade_upper}, #{religion}, #{establish_time}, 
+			#{is_boarding}, #{created_time},
+			#{updated_time}
+		)	
+	</insert>
+	
+	<delete id="deleteSchool" parameterType="School">
+		DELETE FROM
+			school_info
+		WHERE
+			id = #{id}
+	</delete>
+	
+	<update id="updateSchool" parameterType="School">
+		UPDATE 
+			school_info
+		SET
+			name=#{name}, name_CN=#{name_CN}, rank=#{rank}, tofel=#{tofel}, ssat=#{ssat}, 
+			type=#{type}, site=#{site}, local=#{local}, grade_lower=#{grade_lower}, 
+			grade_upper=#{grade_upper}, religion=#{religion}, 
+			establish_time=#{establish_time}, is_boarding=#{is_boarding}, 
+			created_time=#{created_time}, updated_time=#{updated_time}
+		WHERE
+			id = #{id}
+	</update>
+</mapper>
